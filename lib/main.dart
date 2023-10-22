@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_basic/student.dart';
 
 void main() {
   runApp(const MyApp());
@@ -30,6 +31,12 @@ class MyHomePage extends StatefulWidget {
 }
 
 class _MyHomePageState extends State<MyHomePage> {
+  List<Student> listStudent = [
+    Student(nrp: 210609001, name: 'Yunus', address: 'Cibiru'),
+    Student(nrp: 210609012, name: 'Zakaria', address: 'Cikadut'),
+    Student(nrp: 210609032, name: 'Yahya', address: 'Bihbul'),
+    Student(nrp: 210609028, name: 'Idris', address: 'Cihanjuang'),
+  ];
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -43,15 +50,20 @@ class _MyHomePageState extends State<MyHomePage> {
           return Card(
             child: ListTile(
               leading: CircleAvatar(
-                backgroundColor: Colors.blue,
-                child: Text('$index'),
+                child: Text('${index + 1}'),
               ),
-              title: const Text('Pemerograman Piranti Bergerak'),
-              subtitle: Text('sesi ke-$index'),
+              title: Text(listStudent[index].name),
+              subtitle: Column(
+                crossAxisAlignment: CrossAxisAlignment.start,
+                children: [
+                  Text(listStudent[index].nrp.toString()),
+                  Text(listStudent[index].address.toString()),
+                ],
+              ),
             ),
           );
         },
-        itemCount: 16,
+        itemCount: listStudent.length,
       ),
       floatingActionButton: FloatingActionButton(
         onPressed: () {},
